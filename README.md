@@ -56,9 +56,7 @@ Many scripts are free to download thanks to user support. Help me to develop new
 
 [Donate via PayPal](https://www.paypal.me/ohnedan)
 
-![PayPal Donate](https://duckduckgo.com/i/6191827e9582a0b2.png)
 
-*Height: 40px; Width: proportional*
 
 ---
 
