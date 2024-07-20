@@ -52,16 +52,12 @@ The next time Photoshop is opened, you can find the scripts under `File -> Scrip
 ### Donate
 
 **Donate:**
-Many scripts are free to download thanks to user support. Help me to develop new scripts and update existing ones by supporting my work with any amount via PayPal.
-
-[Donate via PayPal](https://www.paypal.me/ohnedan)
-
-
+Many scripts are free to download thanks to user support. Help me to develop new scripts and update existing ones by supporting my work with any amount via [PayPal](https://www.paypal.me/ohnedan).
 
 ---
 
 ### Contact
 
 **Contact:**
-Email <gssdarm@gmail.com>  
+<gssdarm@gmail.com>  
 Telegram [@ohnedan](https://t.me/ohnedan)
