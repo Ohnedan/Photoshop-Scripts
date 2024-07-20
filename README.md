@@ -14,11 +14,6 @@ This script for Adobe Photoshop extracts information about the document, includi
 **Workflow:**
 The script saves the current ruler units, switches to pixels for information extraction, and restores the original settings after execution.
 
-**Installing:**
-Simply clone this repo into the Photoshop scripts directory: `Adobe Photoshop [Your Version]/Presets/Scripts/`
-
-The next time Photoshop is opened, you can find the scripts under `File -> Scripts`.
-
 ---
 
 ### Stack in PSD
@@ -42,3 +37,29 @@ This Adobe Photoshop script serves several purposes:
 - Establishes a "PSD" folder on the desktop if not present.
 - Saves the document in PSD format, naming it based on the bottom layer.
 - Displays only the bottom layer, concealing others.
+
+---
+
+### Installing
+
+**Installing:**
+Simply clone this repo into the Photoshop scripts directory: `Adobe Photoshop [Your Version]/Presets/Scripts/`
+
+The next time Photoshop is opened, you can find the scripts under `File -> Scripts`.
+
+---
+
+### Donate
+
+**Donate:**
+Many scripts are free to download thanks to user support. Help me to develop new scripts and update existing ones by supporting my work with any amount via PayPal.
+
+[PayPal]: https://www.paypal.me/ohnedan
+
+---
+
+### Contact
+
+**Contact:**
+Email <gssdarm@gmail.com>  
+Telegram [@ohnedan](https://t.me/ohnedan)
