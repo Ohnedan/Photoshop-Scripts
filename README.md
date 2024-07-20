@@ -54,7 +54,11 @@ The next time Photoshop is opened, you can find the scripts under `File -> Scrip
 **Donate:**
 Many scripts are free to download thanks to user support. Help me to develop new scripts and update existing ones by supporting my work with any amount via PayPal.
 
-[PayPal]: https://www.paypal.me/ohnedan
+[Donate via PayPal](https://www.paypal.me/ohnedan)
+
+![PayPal Donate](https://duckduckgo.com/i/6191827e9582a0b2.png)
+
+*Height: 40px; Width: proportional*
 
 ---
 
