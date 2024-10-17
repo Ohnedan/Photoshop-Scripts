@@ -74,10 +74,6 @@ The next time Photoshop is opened, you can find the scripts under `File -> Scrip
 
 ---
 
-Here’s the description ready for you to copy directly into GitHub:
-
----
-
 ### Contact
 
 **Contact:**
