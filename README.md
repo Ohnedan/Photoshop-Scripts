@@ -40,6 +40,31 @@ This Adobe Photoshop script serves several purposes:
 
 ---
 
+### Photoshop Layer Cleanup Script
+
+**Description:**  
+This Adobe Photoshop script automates the cleanup of your document by performing the following tasks:
+
+- **Layer Composition Management:** Allows you to choose whether to save or discard existing layer compositions.
+- **Remove Invisible/Empty Layers:** Deletes invisible, off-canvas, and empty layers to streamline your document.
+- **Handle Locked Layers and Clipping Groups:** Safely manages locked layers and clipping groups to prevent unwanted deletions.
+- **Clean Empty Layer Sets:** Detects and removes empty layer groups to maintain an organized layer structure.
+
+**Function Descriptions:**
+- `main():` Orchestrates the cleanup process and user interactions.
+- `removeAllLayerComps(doc):` Removes all layer compositions from the document.
+- `removeAllEmptyArtLayers(obj, layercomps):` Deletes empty or off-canvas layers from the specified object.
+- `removeEmptyLayerSets():` Removes empty layer sets from the document.
+- `isLocked(myLayer):` Checks if a specific layer is locked.
+
+**Script Actions:**
+- Prompts the user for confirmation regarding layer compositions.
+- Deletes invisible and empty layers.
+- Manages locked layers to avoid accidental deletions.
+- Cleans up empty layer sets for a more organized document.
+
+---
+
 ### Installing
 
 **Installing:**
@@ -49,10 +74,7 @@ The next time Photoshop is opened, you can find the scripts under `File -> Scrip
 
 ---
 
-### Donate
-
-**Donate:**
-Many scripts are free to download thanks to user support. Help me to develop new scripts and update existing ones by supporting my work with any amount via [PayPal](https://www.paypal.me/ohnedan).
+Here’s the description ready for you to copy directly into GitHub:
 
 ---
 
