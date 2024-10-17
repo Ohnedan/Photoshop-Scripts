@@ -40,7 +40,7 @@ This Adobe Photoshop script serves several purposes:
 
 ---
 
-### Photoshop Layer Cleanup Script
+### Layer Cleanup Script
 
 **Description:**  
 This Adobe Photoshop script automates the cleanup of your document by performing the following tasks:
