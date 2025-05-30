@@ -95,10 +95,6 @@ This Adobe Photoshop script copies all path items from `.tif` files into matchin
 - Adobe Photoshop (tested with CS6 and newer)
 - JavaScript scripting enabled
 
-**License
-
-MIT License
-
 ---
 
 ### Installing
