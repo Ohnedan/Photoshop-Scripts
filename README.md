@@ -65,6 +65,42 @@ This Adobe Photoshop script automates the cleanup of your document by performing
 
 ---
 
+### PathTransfer
+
+**Description:**  
+This Adobe Photoshop script copies all path items from `.tif` files into matching `.jpg` files based on filename. It’s ideal for workflows requiring consistent path (clipping path or shape) transfer between image formats.
+
+## Function Descriptions
+
+- `processFolder():`  
+  Main procedure for iterating JPGs, finding matching TIFs, and initiating path copying.
+
+- `copyPaths(sourceDoc, targetDoc):`  
+  Transfers all path items from the TIF file to the JPG document.
+
+- `createNewPathIfNeeded(name):`  
+  Ensures named paths are created in the JPG if multiple exist.
+
+## Script Actions
+
+- Prompts user to select folders for `.jpg` and `.tif` files.
+- Matches each `.jpg` with a `.tif` of the same name.
+- Opens both files, copies all paths from the TIF to the JPG.
+- Creates new paths in the JPG document if necessary.
+- Saves and closes the JPG.
+- Closes the TIF without saving changes.
+
+## Requirements
+
+- Adobe Photoshop (tested with CS6 and newer)
+- JavaScript scripting enabled
+
+## License
+
+MIT License
+
+---
+
 ### Installing
 
 **Installing:**
