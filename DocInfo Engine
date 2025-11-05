@@ -1,0 +1,170 @@
+#target photoshop
+
+// ==================================================================================
+// DocInfo Engine
+// Version: 1.3
+// Author: Ohnedan (adapted)
+//
+// English:
+// This script collects the key technical specifications of the active Photoshop document:
+// - Dimensions in pixels (px), centimeters (cm), and inches (in).
+// - Resolution (PPI and PPCM).
+// - Megapixel count (MP), Color Mode, Bit Depth, and Color Profile.
+// - Aspect ratio, including the Farey fraction representation.
+// All data is inserted into a new text layer placed at the Top Left corner of the document.
+//
+// Русский:
+// Этот скрипт собирает ключевые технические характеристики активного документа Photoshop:
+// - Размеры в пикселях (px), сантиметрах (cm) и дюймах (in).
+// - Разрешение (PPI и PPCM).
+// - Количество мегапикселей (MP), Цветовой режим, Битовая глубина и Цветовой профиль.
+// - Соотношение сторон, включая дробное представление Фарея.
+// Все данные вставляются в новый текстовый слой, расположенный в верхнем левом углу документа.
+// ==================================================================================
+
+// Мы оборачиваем основную логику в немедленно вызываемую функциональную экспрессию (IIFE),
+// чтобы "return" при проверке ошибок был корректным.
+// We wrap the main logic in an Immediately Invoked Function Expression (IIFE)
+// to make the "return" in the error check legal.
+(function() {
+
+    // === Error Check: Ensure a document is open / Проверка ошибки: Убедиться, что документ открыт ===
+    if (app.documents.length === 0) {
+        // We cannot use alert(), so we just stop the script execution
+        // Мы не можем использовать alert(), поэтому просто останавливаем выполнение скрипта
+        return;
+    }
+
+    // Сохраняем текущие единицы измерения линеек / Save current ruler units
+    var savedRuler = app.preferences.rulerUnits;
+    // Устанавливаем единицы измерения линеек в пиксели для точных расчетов / Set ruler units to pixels for accurate calculations
+    app.preferences.rulerUnits = Units.PIXELS;
+
+    var doc = app.activeDocument; // Получаем ссылку на активный документ / Get reference to the active document
+
+    // === Получение параметров документа / Document parameter retrieval ===
+
+    // Ширина активного документа (в пикселях) / Width of the active document (in pixels)
+    var w = doc.width.value;
+    // Высота активного документа (в пикселях) / Height of the active document (in pixels)
+    var h = doc.height.value;
+
+    // Текущий цветовой режим (напр., RGB, CMYK) / Current Color Mode (e.g., RGB, CMYK)
+    var colorMode = doc.mode.toString().split(".")[1];
+    // Текущая битовая глубина (напр., EIGHT, SIXTEEN, THIRTYTWO) / Current Bit Depth (e.g., EIGHT, SIXTEEN, THIRTYTWO)
+    var bitDepth = doc.bitsPerChannel.toString().split(".")[1];
+    // Текущий цветовой профиль (напр., sRGB IEC61966-2.1) / Current Color Profile (e.g., sRGB IEC61966-2.1)
+    var colorProfile = doc.colorProfileName;
+
+    // Находим наибольший общий делитель (НОД) ширины и высоты / Find the Greatest Common Divisor (GCD) of width and height
+    var r = gcd(w, h);
+    // Вычисляем количество мегапикселей (MP) / Calculate the number of megapixels (MP)
+    var mp = w * h / 1000000;
+    // Общее количество пикселей / Total number of pixels
+    var pix = w * h;
+    // Разрешение документа в пикселях на дюйм (PPI) / Document resolution in pixels per inch (PPI)
+    var ppiRes = doc.resolution;
+    // Разрешение в пикселях на сантиметр (PPCM) / Resolution in pixels per centimeter (PPCM)
+    var ppcmRes = ppiRes / 2.54;
+    // Соотношение сторон (W / H) / Aspect ratio (W / H)
+    var ratio = w / h;
+    // Имя активного документа / Name of the active document
+    var docName = doc.name;
+    // Ширина в сантиметрах (при 72 PPI для расчёта физического размера) / Width in centimeters (assuming 72 PPI for physical size calculation)
+    var wMetric = w / 72 * 2.54;
+    // Высота в сантиметрах / Height in centimeters
+    var hMetric = h / 72 * 2.54;
+    // Ширина в дюймах / Width in inches
+    var wInches = w / 72;
+    // Высота в дюймах / Height in inches
+    var hInches = h / 72;
+
+
+    // === Формирование текстового блока с информацией / Formatting the text block with information ===
+
+    var docInfo =
+        'Name: ' + docName + '\r' +
+        'Color Profile: ' + colorProfile + '\r' +
+        'Color Mode: ' + colorMode + ' / ' + bitDepth + '\r' +
+        'Dimensions: ' + w + ' x ' + h + ' px' + '\r' +
+        // Вывод физических размеров / Output physical dimensions
+        'Dimensions: ' + (wMetric.toFixed(2)) + ' x ' + (hMetric.toFixed(2)) + ' cm / ' + (wInches.toFixed(2)) + ' x ' + (hInches.toFixed(2)) + ' in' + '\r' +
+        'Resolution: ' + ppiRes.toFixed(1) + ' ppi / ' + ppcmRes.toFixed(2) + ' ppcm' + '\r' +
+        'Megapixel Value: ' + mp.toFixed(1) + ' MP' + ' (' + pix + ' px)' + '\r' +
+        // Добавление базовых и Фарея соотношений сторон / Add basic and Farey aspect ratios
+        'Aspect Ratio: ' + ratio.toFixed(2) + ':1' + ' / ' + (ratio * 2).toFixed(2) + ':2 / ' + (ratio * 4).toFixed(2) + ':4' + ' (Basic)' + '\r' +
+        'Aspect Ratio (Farey): ' + aspect_ratio(w / h, 50).toString().replace(',', ':');
+
+
+    // === Создание и позиционирование текстового слоя / Creating and positioning the text layer ===
+
+    // Добавляем новый слой / Add a new layer
+    var textLayer = doc.artLayers.add();
+    // Устанавливаем тип слоя как текст / Set the layer type to text
+    textLayer.kind = LayerKind.TEXT;
+    // Имя слоя / Layer name
+    textLayer.name = "Document Info";
+    var textItem = textLayer.textItem; // Получаем объект для управления текстом / Get the text item object
+
+    // Установка содержимого и стиля текста / Set text content and style
+    textItem.contents = docInfo; // Содержимое / Content
+    textItem.size = 10; // Размер шрифта / Font size
+    textItem.font = "HelveticaNeue"; // Гарнитура / Font face
+    var textColor = new SolidColor(); // Новый объект цвета / New Color object
+    textColor.rgb.red = 51; // Красный / Red
+    textColor.rgb.green = 51; // Зеленый / Green
+    textColor.rgb.blue = 51; // Синий / Blue
+    textItem.color = textColor; // Применяем цвет / Apply color
+
+    // Устанавливаем позицию текстового слоя в верхний левый угол с небольшим отступом (50px)
+    // Set the position of the text layer to the top left corner with a small padding (50px)
+    var paddingX = 50;
+    var paddingY = 50;
+    textItem.position = [paddingX, paddingY];
+
+    // === Завершение / Finalization ===
+
+    // Восстанавливаем исходные единицы измерения / Restore the original ruler units
+    app.preferences.rulerUnits = savedRuler;
+
+// Конец IIFE / End of the IIFE
+}());
+
+
+// === Вспомогательные функции / Helper Functions ===
+
+// Функция для нахождения Наибольшего Общего Делителя (НОД) / Function to find the Greatest Common Divisor (GCD)
+function gcd(a, b) {
+    return (b == 0) ? a : gcd(b, a % b);
+}
+
+// Функция для нахождения ближайшего простого дробного соотношения (метод Фарея)
+// Function to find the closest simple fractional aspect ratio (Farey method)
+function aspect_ratio(val, lim) {
+    var lower = [0, 1];
+    var upper = [1, 0];
+
+    while (true) {
+        var mediant = [lower[0] + upper[0], lower[1] + upper[1]];
+
+        if (val * mediant[1] > mediant[0]) {
+            if (lim < mediant[1]) {
+                return upper;
+            }
+            lower = mediant;
+        } else if (val * mediant[1] == mediant[0]) {
+            if (lim >= mediant[1]) {
+                return mediant;
+            }
+            if (lower[1] < upper[1]) {
+                return lower;
+            }
+            return upper;
+        } else {
+            if (lim < mediant[1]) {
+                return lower;
+            }
+            upper = mediant;
+        }
+    }
+}
