@@ -1,18 +1,30 @@
-### Document Info Extractor
+### DocInfo Engine
 
-**Description:**
-This script for Adobe Photoshop extracts information about the document, including its dimensions, resolution, aspect ratio, and megapixel count. The gathered data is inserted into a new text layer in the center of the document.
+**Description:**  
+This Adobe Photoshop script automatically gathers and displays the essential technical specifications of the currently active document.  
+All collected information is added as a new text layer called **“Document Info”** positioned near the **top-left corner** of the canvas.
 
-**Script functionality:**
-- Extract and display the document name.
-- Determine the document dimensions in pixels, centimeters, and inches.
-- Determine the document resolution in ppi and ppcm.
-- Calculate and display the megapixel count.
-- Determine the aspect ratio (both basic and Farey).
-- Insert all gathered information as text into a new layer.
+**Features:**  
+- **Comprehensive Details:** Displays document name, color profile, color mode, and bit depth.  
+- **Dimensions:** Shows width and height in **pixels**, **centimeters**, and **inches**.  
+- **Resolution:** Reports both **PPI (pixels per inch)** and **PPCM (pixels per centimeter)**.  
+- **Pixel Count:** Calculates total pixel amount and **megapixel value**.  
+- **Aspect Ratio:** Outputs decimal ratios and simplified **Farey fractions**.  
+- **Non-Destructive:** Adds info as a text layer without modifying the original content.  
+- **Auto Unit Restore:** Restores the user’s original ruler settings after execution.  
 
-**Workflow:**
-The script saves the current ruler units, switches to pixels for information extraction, and restores the original settings after execution.
+**Function Descriptions:**  
+- `gcd(a, b):` Calculates the greatest common divisor (GCD) of two numbers.  
+- `aspect_ratio(val, lim):` Determines the closest simple fractional representation (Farey method).  
+
+**Script Actions:**  
+- Checks that a document is open before running.  
+- Collects parameters: dimensions, resolution, color info, and pixel data.  
+- Computes additional data: megapixels and aspect ratios.  
+- Builds a formatted text block containing all document details.  
+- Creates a new text layer named **“Document Info”** with Helvetica Neue font, size 10, and gray color (RGB 51,51,51).  
+- Positions this layer **50px** from the top and left edges.  
+- Restores the previous ruler unit preference at the end.  
 
 ---
 
