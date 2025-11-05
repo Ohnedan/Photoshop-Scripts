@@ -120,6 +120,5 @@ The next time Photoshop is opened, you can find the scripts under `File -> Scrip
 
 ### Contact
 
-**Contact:**
-<gssdarm@gmail.com>  
-Telegram [@ohnedan](https://t.me/ohnedan)
+**Email:** <gssdarm@gmail.com>  
+**Telegram:** [@ohnedan](https://t.me/ohnedan)
