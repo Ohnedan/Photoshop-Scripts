@@ -28,6 +28,42 @@ All collected information is added as a new text layer called **“Document Info
 
 ---
 
+### Document Info Extractor (v2.0)
+
+**Description:**  
+This Adobe Photoshop script automatically gathers and displays the essential technical specifications of the currently active document.  
+The script intelligently scales the text block to occupy **30% of the image’s shortest side** and positions the text layer **“Document Info”** in the **bottom-left corner** using a dynamic margin.
+
+**Features:**  
+- **Smart Auto-Sizing:** Automatically resizes the text block to match 30% of the shortest document edge.  
+- **Professional Formatting:** Uses **Bold** for data labels and **Regular** for values.  
+- **Rich Color Data:** Displays Color Mode, Bit Depth, and ICC Profile.  
+- **Dimensions:** Shows width and height in **pixels**, **centimeters**, and **inches**.  
+- **Resolution:** Reports **PPI** (pixels per inch) and **PPCM** (pixels per centimeter).  
+- **Pixel Count:** Calculates total pixel amount and **megapixel value**.  
+- **Aspect Ratio:** Outputs decimal ratios and simplified **Farey fractions**.  
+- **Error Safe:** Attempts to use **Helvetica Neue/Bold**, silently falling back to Arial if unavailable.  
+- **Non-Destructive:** Adds the info as a new text layer without modifying the original content.  
+- **Auto Unit Restore:** Restores the user’s original ruler settings after execution.
+
+**Function Descriptions:**  
+- `gcd(a, b):` Calculates the greatest common divisor (GCD).  
+- `aspect_ratio(val, lim):` Determines the closest simplified fractional representation (Farey method).  
+- `formatWords(layer, words, font):` Detects specific keywords and applies bold formatting.  
+- `applyStyleToRange(...):` Uses Action Manager to safely apply mixed font styles within a text layer.
+
+**Script Actions:**  
+- Checks that a document is open.  
+- Collects document parameters: dimensions, resolution, color info, and pixel data.  
+- Attempts to set **Helvetica Neue** as default font (fallback if unavailable).  
+- Applies **Bold** formatting to label keywords using Action Manager.  
+- Calculates the scale factor required for the 30% text-block rule.  
+- Resizes the “Document Info” text layer to the computed scale.  
+- Repositions the layer to the **bottom-left corner** with a **3% margin**.  
+- Restores the previous ruler unit preference at the end.
+
+---
+
 ### Stack in PSD
 
 **Description:**
