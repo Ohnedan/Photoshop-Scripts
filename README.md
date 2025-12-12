@@ -121,7 +121,7 @@ This script automates the process of cropping product images based on a clipping
 
 > **Key Feature:** The script modifies the **Canvas Size** only. It **never resamples** or stretches the product image itself, ensuring 100% original pixel quality.
 
----
+
 
 ## 🚀 Features
 
@@ -131,7 +131,7 @@ This script automates the process of cropping product images based on a clipping
 * **Format Preservation:** Saves the processed file in the exact same format as the source (`.jpg` → `.jpg`, `.tif` → `.tif`, etc.).
 * **Smart Auto-Size Logic:** Automatically selects the best standard square canvas size based on the object's dimensions + safety margin.
 
----
+
 
 ## 📐 How It Works (The Logic)
 
@@ -149,7 +149,7 @@ If your object is **1100px** wide:
 `1100px + 200px (margin) = 1300px` needed.
 This is too big for 1181px, so the script automatically selects the **1417px** canvas.
 
----
+
 
 ## 🛠 Installation & Usage
 
@@ -161,7 +161,7 @@ This is too big for 1181px, so the script automatically selects the **1417px** c
     * Select your **Save Folder**.
     * Click **Start Batch**.
 
----
+
 
 ## 📝 Requirements
 
