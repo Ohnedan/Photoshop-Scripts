@@ -113,6 +113,63 @@ This Adobe Photoshop script automates the cleanup of your document by performing
 
 ---
 
+### Smart Path Crop ✂️
+
+**Batch automation script for Adobe Photoshop by Maestr.o**
+
+This script automates the process of cropping product images based on a clipping path ("Path 1"), adding safety margins, and placing them on a standard square canvas.
+
+> **Key Feature:** The script modifies the **Canvas Size** only. It **never resamples** or stretches the product image itself, ensuring 100% original pixel quality.
+
+---
+
+## 🚀 Features
+
+* **Batch Processing:** Select a source folder and a destination folder.
+* **Smart Detection:** Automatically finds "Path 1". Images without this path are skipped.
+* **Original Quality:** Only crops and extends the canvas. Zero resizing of the product.
+* **Format Preservation:** Saves the processed file in the exact same format as the source (`.jpg` → `.jpg`, `.tif` → `.tif`, etc.).
+* **Smart Auto-Size Logic:** Automatically selects the best standard square canvas size based on the object's dimensions + safety margin.
+
+---
+
+## 📐 How It Works (The Logic)
+
+The script follows this strict workflow for every image:
+
+1.  **Crop:** The image is cropped tightly to the bounds of `Path 1`.
+2.  **Calculate:** It measures the object and adds a **Safety Margin of 100px** on each side (Total buffer = 200px).
+3.  **Canvas Extension:** It sets the canvas to the nearest standard square that fits the object + margin:
+    * **1181 x 1181 px**
+    * **1417 x 1417 px**
+    * **2362 x 2362 px**
+
+**Example:**
+If your object is **1100px** wide:
+`1100px + 200px (margin) = 1300px` needed.
+This is too big for 1181px, so the script automatically selects the **1417px** canvas.
+
+---
+
+## 🛠 Installation & Usage
+
+1.  Download the `Smart_Path_Crop.jsx` file.
+2.  Open Adobe Photoshop.
+3.  Go to **File > Scripts > Browse...** and select the downloaded file.
+4.  In the dialog window:
+    * Select your **Source Folder** (images with Path 1).
+    * Select your **Save Folder**.
+    * Click **Start Batch**.
+
+---
+
+## 📝 Requirements
+
+* Adobe Photoshop CS6, CC, or 2020+
+* Images must have a clipping path named **"Path 1"**.
+
+---
+
 ### PathTransfer
 
 **Description:**  
